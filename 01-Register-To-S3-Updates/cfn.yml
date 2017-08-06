@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda and S3 examples to listen to S3 updates.
+
+Resources:
+  S3UpdateListener:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        # This Lambda is using the managed policy AWSLambdaExecute
+        - AWSLambdaExecute      # provides Put and Get access to any bucket; you should better use more fine-grained policies
+      Events:
+        S3Update:
+          Type: S3
+          Properties:
+            Bucket: !Ref SrcBucket
+            Events: s3:ObjectCreated:*
+
+  SrcBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: 'my-bucket-name'

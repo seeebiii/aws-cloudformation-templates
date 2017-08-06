@@ -1,0 +1,57 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Examples for Lambda policies.
+
+Resources:
+  LoggingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        # Instead of using the AWS Managed Policy "AWSLambdaBasicExecutionRole"
+        # you can use the following statement for a Lambda function:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - "logs:CreateLogStream"
+                - "logs:CreateLogGroup"
+                - "logs:PutLogEvents"
+              Resource: "*"
+
+
+  SecondLoggingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        # In this case both policies have the same result, but you could replace them by whatever you want.
+        - AWSLambdaBasicExecutionRole
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - "logs:CreateLogStream"
+                - "logs:CreateLogGroup"
+                - "logs:PutLogEvents"
+              Resource: "*"
+
+
+  InvokingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: "Allow"
+              Action: "lambda:invokeFunction"
+              Resource:
+                - !GetAtt [LoggingFunction, Arn]
+                - !GetAtt [SecondLoggingFunction, Arn]

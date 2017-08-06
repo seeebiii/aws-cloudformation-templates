@@ -1,0 +1,40 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Lambda and S3 examples to listen to S3 updates.
+
+Resources:
+  S3SpecificUpdateListener:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        # This Lambda is using a more fine grained
+        - AWSLambdaBasicExecutionRole
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - 's3:GetObject'
+              # IN THIS CASE, DO NOT DIRECTLY REFERENCE SrcBucket HERE, OTHERWISE THIS WILL RESULT IN A CIRCULAR DEPENDENCY!
+              # Directly insert the bucket name here!
+              Resource:
+                - !Sub arn:aws:s3:::'my-bucket-name'        # for listObjects access
+                - !Sub arn:aws:s3:::'my-bucket-name'/*      # for access to the bucket objects
+      Events:
+        S3Update:
+          Type: S3
+          Properties:
+            Bucket: !Ref SrcBucket
+            Events: s3:ObjectCreated:*
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: suffix
+                    Value: .jpg
+
+  SrcBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: 'my-bucket-name'

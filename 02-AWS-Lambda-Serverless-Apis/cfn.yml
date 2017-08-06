@@ -1,0 +1,34 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Deploys a simple AWS Lambda function using SAM.
+
+Resources:
+  SimpleApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        GetResource:
+          Type: Api
+          Properties:
+            Path: /hello
+            Method: GET
+
+  ProxyApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Events:
+        GetProxyResource:
+          Type: Api
+          Properties:
+            Path: /proxy/{proxy+}
+            Method: ANY
