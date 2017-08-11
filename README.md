@@ -12,7 +12,7 @@ This will be used to upload the code zips for your Lambdas.
 3. Test it!
 
 ### Other templates
-If you want more templates, check out my other repository: [NodeJS and Java start projects for AWS Lambda](https://github.com/seeebiii/aws-lambda-boilerplate)
+If you want more templates, check out my other repository: [NodeJS and Java starter projects for AWS Lambda](https://github.com/seeebiii/aws-lambda-boilerplate)
 
 
 ## 01 Register to S3 updates
