@@ -1,0 +1,4 @@
+SNSTopic:
+  Type: AWS::SNS::Topic
+  Properties:
+    DisplayName: MySNSTopic

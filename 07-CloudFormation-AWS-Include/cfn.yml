@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Deploys a simple AWS Lambda function to listen to updates of an SNS topic.
+
+Parameters:
+  IncludeUrl:
+    Type: String
+    Description: A S3 url linking to a CloudFormation which should be included in this main template.
+
+Resources:
+  MainFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        - AWSLambdaBasicExecutionRole
+
+  'Fn::Transform':
+    Name: 'AWS::Include'
+    Parameters:
+      Location: !Ref IncludeUrl

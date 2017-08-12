@@ -102,6 +102,15 @@ Registers a Lambda function to listen to SNS topic updates.
 Not an actual template, but it's showing some examples of [intrinsic functions](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html).
 
 
+## 07 CloudFormation: AWS::Include
+
+**Details:**
+If a CloudFormation stack grows bigger and bigger, you might face an error like `at 'templateBody' failed to satisfy constraint: Member must have length less than or equal to 51200`
+which simply means: your CloudFormation template is too big and you have to split it. I also wrote a blog post about two options you have in 
+order to [reduce your CloudFormation template size](https://www.sebastianhesse.de/2017/08/12/reduce-cloudformation-template-size/).
+In this example, I've added the code for using [AWS::Include command](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/create-reusable-transform-function-snippets-and-add-to-your-template-with-aws-include-transform.html).
+
+
 ## License
 
 MIT License
