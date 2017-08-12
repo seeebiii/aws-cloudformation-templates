@@ -15,7 +15,7 @@ This will be used to upload the code zips for your Lambdas.
 If you want more templates, check out my other repository: [NodeJS and Java starter projects for AWS Lambda](https://github.com/seeebiii/aws-lambda-boilerplate)
 
 
-## 01 Register to S3 updates
+## 01 AWS Lambda: Register to S3 updates
 
 ### Register for all updates
 
@@ -33,7 +33,7 @@ This example is similar to `Register for all updates`, but adds some more detail
 
 
 
-## 02 AWS Lambda Serverless Apis
+## 02 AWS Lambda: Serverless Apis
 
 ### Simple Serverless Api
 
@@ -90,7 +90,7 @@ Take a look at [this documentation page](http://docs.aws.amazon.com/AmazonCloudW
 Can be useful for scheduled tasks like checking a website or doing some regular stuff.
 
 
-## 05 Register to SNS topic
+## 05 AWS Lambda: Register to SNS topic
 
 **Details:**
 Registers a Lambda function to listen to SNS topic updates.
