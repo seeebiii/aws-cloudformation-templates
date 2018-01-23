@@ -110,6 +110,10 @@ which simply means: your CloudFormation template is too big and you have to spli
 order to [reduce your CloudFormation template size](https://www.sebastianhesse.de/2017/08/12/reduce-cloudformation-template-size/).
 In this example, I've added the code for using [AWS::Include command](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/create-reusable-transform-function-snippets-and-add-to-your-template-with-aws-include-transform.html).
 
+## 08 CloudFormation: Environments
+
+**Details:**
+This example shows how to create parameterized stacks, so e.g. you can create different environments of your stack. 
 
 ## License
 
