@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-LAMBDA_BUCKET="k15t-shesse-lambdas"
+# set bucket to upload Lambda artifacts to
+LAMBDA_BUCKET=""
 # change this ENV variable depending on the environment you want to deploy
 ENV="prd"
 STACK_NAME="aws-lambda-cf-environments-${ENV}"
