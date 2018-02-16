@@ -2,6 +2,7 @@
 Examples for AWS CloudFormation templates.
 Currently focused on templates for [AWS Serverless Application Model (SAM)](https://github.com/awslabs/serverless-application-model).
 
+
 ## How-To
 
 1. All examples contain a `deploy.sh` file which contains some steps to package the project and deploy a CloudFormation stack.
@@ -15,14 +16,32 @@ This will be used to upload the code zips for your Lambdas.
 If you want more templates, check out my other repository: [NodeJS and Java starter projects for AWS Lambda](https://github.com/seeebiii/aws-lambda-boilerplate)
 
 
-## 01 AWS Lambda: Register to S3 updates
+## AWS Lambda Policies: Logging Permission
+
+### Logging Permission as unmanaged policy
+
+**Details:**
+Creates a simple Lambda function and gives the Lambda permission to use CloudWatch logs.
+This is an alternative if you don't want to use managed policies.
+
+### Use managed and unmanaged policies together
+
+**Details:**
+This example demonstrates how to use managed and unmanaged policies together for one Lambda function.
+
+### Invoke another Lambda function
+
+**Details:**
+Example to show which policies are needed if you want to invoke another Lambda function.
+
+
+## AWS Lambda: Register to S3 updates
 
 ### Register for all updates
 
 **Details:**
 This example creates an S3 bucket and a Lambda function.
 The Lambda function is configured to be called when a new file is uploaded to S3.
-
 
 ### Register for specific file updates
 
@@ -32,15 +51,19 @@ This example is similar to `Register for all updates`, but adds some more detail
 - It specifies that the Lambda can execute all actions on the referenced bucket, e.g. Put, Get, etc.
 
 
+## AWS Lambda: Register to SNS topic
 
-## 02 AWS Lambda: Serverless Apis
+**Details:**
+Registers a Lambda function to listen to SNS topic updates.
+
+
+## AWS Lambda: Serverless Apis
 
 ### Simple Serverless Api
 
 **Details:**
 Declares a simple AWS Lambda function using SAM.
 Lambda function is available under `/hello` using `GET`.
-
 
 ### AWS Lambda Serverless Api with Proxy
 
@@ -52,7 +75,6 @@ For example, you can call your Lambda with `GET /api/books/1`, but also using `P
 This is different if you're using a base path like `/basePath/{proxy+}`, i.e. every URL must match at least `/basePath/`.
 You can then also use some other frameworks like [Express](https://expressjs.com/) for NodeJS or [Jersey](https://jersey.github.io/) for Java.
 
-
 **Note:**
 Though it seems to be very handy to use `/{proxy+}`, you should consider the
 size of your Lambda function. The size can exceed the limit quite quickly,
@@ -60,28 +82,7 @@ especially if you're using Java for your Lambda function. So try to cut down
 the functionality you want to provide.
 
 
-## 03 AWS Lambda Policies: Logging Permission
-
-### Logging Permission as unmanaged policy
-
-**Details:**
-Creates a simple Lambda function and gives the Lambda permission to use CloudWatch logs.
-This is an alternative if you don't want to use managed policies.
-
-
-### Use managed and unmanaged policies together
-
-**Details:**
-This example demonstrates how to use managed and unmanaged policies together for one Lambda function.
-
-
-### Invoke another Lambda function
-
-**Details:**
-Example to show which policies are needed if you want to invoke another Lambda function.
-
-
-## 04 AWS Lambda: Scheduled Functions
+## AWS Lambda: Scheduled Functions
 
 **Details:**
 Creates two Lambda functions which are triggered every day.
@@ -90,19 +91,13 @@ Take a look at [this documentation page](http://docs.aws.amazon.com/AmazonCloudW
 Can be useful for scheduled tasks like checking a website or doing some regular stuff.
 
 
-## 05 AWS Lambda: Register to SNS topic
-
-**Details:**
-Registers a Lambda function to listen to SNS topic updates.
-
-
-## 06 CloudFormation: Intrinsic Functions
+## CloudFormation: Intrinsic Functions
 
 **Details:**
 Not an actual template, but it's showing some examples of [intrinsic functions](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html).
 
 
-## 07 CloudFormation: AWS::Include
+## CloudFormation: AWS::Include
 
 **Details:**
 If a CloudFormation stack grows bigger and bigger, you might face an error like `at 'templateBody' failed to satisfy constraint: Member must have length less than or equal to 51200`
@@ -110,11 +105,13 @@ which simply means: your CloudFormation template is too big and you have to spli
 order to [reduce your CloudFormation template size](https://www.sebastianhesse.de/2017/08/12/reduce-cloudformation-template-size/).
 In this example, I've added the code for using [AWS::Include command](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/create-reusable-transform-function-snippets-and-add-to-your-template-with-aws-include-transform.html).
 
-## 08 CloudFormation: Environments
+
+## CloudFormation: Environments
 
 **Details:**
 This example shows how to create parameterized stacks, so e.g. you can create different environments of your stack.
 The same resources are created with different names and belong to a different stack. 
+
 
 ## License
 
