@@ -20,9 +20,8 @@ If you want more templates, make sure to check out my other repository: [NodeJS 
 
 ## Examples
 
-- [AWS Lambda Policies: Logging Permission](./AWS-Lambda-Policies): 
-Creates a simple Lambda function and gives it the permission to use CloudWatch logs.
-This is an alternative if you don't want to use managed policies.
+- [AWS Lambda: Policies](./AWS-Lambda-Policies): 
+Creates multiple Lambda functions and gives them the permission to use CloudWatch logs using different approaches.
 
 - [AWS Lambda: Register to Kinesis](./AWS-Lambda-Register-To-Kinesis)
 Creates a Kinesis stream.
@@ -35,14 +34,11 @@ The Lambda function is configured to be called when a new file is uploaded to S3
 - [AWS Lambda: Register to SNS topic](./AWS-Lambda-Register-To-SNS-Topic)
 Registers a Lambda function to listen to SNS topic updates.
 
-- [AWS Lambda: Serverless Apis](./AWS-Lambda-Serverless-Apis)
-Declares a simple AWS Lambda function using SAM.
-
 - [AWS Lambda: Scheduled Functions](./AWS-Lambda-Scheduled-Functions)
 Creates two Lambda functions which are triggered every day using different syntax.
 
-- [CloudFormation: Intrinsic Functions](./CloudFormation-Intrinsic-Functions)
-Not an actual template, but it's showing some examples of [intrinsic functions](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html).
+- [AWS Lambda: Serverless Apis](./AWS-Lambda-Serverless-Apis)
+Declares a simple AWS Lambda function using SAM.
 
 - [CloudFormation: AWS::Include](./CloudFormation-AWS-Include)
 If a CloudFormation stack grows bigger and bigger, you might face an error like `at 'templateBody' failed to satisfy constraint: Member must have length less than or equal to 51200`
@@ -53,6 +49,9 @@ In this example, I've added the code for using [AWS::Include command](http://doc
 - [CloudFormation: Environments](./CloudFormation-Environments)
 This example shows how to create parameterized stacks, so e.g. you can create different environments of your stack.
 The same resources are created with different names and belong to a different stack.
+
+- [CloudFormation: Intrinsic Functions](./CloudFormation-Intrinsic-Functions)
+Not an actual template, but it's showing some examples of [intrinsic functions](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference.html).
 
 
 ## Similar Projects
