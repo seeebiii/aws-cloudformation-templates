@@ -1,10 +1,9 @@
-## AWS Lambda: Register to Kinesis
+# AWS Lambda: Register to Kinesis
 
-**Details:**
 Creates a Kinesis stream.
 Also deploys one Lambda function which is sending data to the stream and two functions which are reading from the stream.
 
-### Quick Start
+## Quick Start
 
 Run:
 

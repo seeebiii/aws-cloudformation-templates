@@ -1,15 +1,25 @@
-## 02 AWS Lambda: Serverless Apis
+# AWS Lambda: Serverless Apis
+
+Declares a simple AWS Lambda function using [SAM](https://github.com/awslabs/serverless-application-model).
+
+## Quick Start
+
+Run:
+
+    export LAMBDA_BUCKET=<your-lambda-bucket> && ./deploy.sh
+
+## Stack Details
+
+This stack contains multiple examples of Lambda function declarations using CloudFormation and [SAM](https://github.com/awslabs/serverless-application-model).
 
 ### Simple Serverless Api
 
-**Details:**
 Declares a simple AWS Lambda function using SAM.
 Lambda function is available under `/hello` using `GET`.
 
 
 ### AWS Lambda Serverless Api with Proxy
 
-**Details:**
 Similar to `Simple Serverless Api`, but uses `ANY` (you can use *any* HTTP verb instead of just `GET`) and `/{proxy+}` instead of `/hello` as a URL path.
 `{proxy+}` will be replaced by the URL path, i.e. how you Lambda function is called.
 This adds more flexibility to your Lambda as you can forward requests on your behalf.
