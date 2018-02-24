@@ -35,6 +35,13 @@ This example demonstrates how to use managed and unmanaged policies together for
 Example to show which policies are needed if you want to invoke another Lambda function.
 
 
+## AWS Lambda: Register to Kinesis
+
+**Details:**
+Creates a Kinesis stream.
+Also deploys one Lambda function which is sending data to the stream and two functions which are reading from the stream.
+
+
 ## AWS Lambda: Register to S3 updates
 
 ### Register for all updates

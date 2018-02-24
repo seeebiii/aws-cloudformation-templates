@@ -1,0 +1,79 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Deploys two simple AWS Lambda functions to listen to a Kinesis stream.
+
+Resources:
+  # this function sends example data to the Kinesis stream
+  DataProviderFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: data_provider.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: "Allow"
+              Action:
+                - 'kinesis:PutRecord'
+              Resource:
+                - !GetAtt MyKinesisStream.Arn
+      Environment:
+        Variables:
+          KINESIS_STREAM: !Ref MyKinesisStream
+      Events:
+        ScheduledQueryEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(1 minute)
+
+  MyKinesisStream:
+    Type: 'AWS::Kinesis::Stream'
+    Properties:
+      Name: 'my-kinesis-stream'
+      ShardCount: 1
+
+  # this function just logs the record data
+  LoggingFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: logger.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AWSLambdaKinesisExecutionRole
+      Environment:
+        Variables:
+          FUNC: 'One'
+      Events:
+        KinesisListener:
+          Type: Kinesis
+          Properties:
+            Stream: !GetAtt MyKinesisStream.Arn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 1
+
+  # this function just logs the record data
+  LoggingFunctionTwo:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: logger.handler
+      Runtime: nodejs6.10
+      CodeUri: ./
+      Timeout: 10
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - AWSLambdaKinesisExecutionRole
+      Environment:
+        Variables:
+          FUNC: 'Two'
+      Events:
+        KinesisListenerTwo:
+          Type: Kinesis
+          Properties:
+            Stream: !GetAtt MyKinesisStream.Arn
+            StartingPosition: TRIM_HORIZON
+            BatchSize: 1

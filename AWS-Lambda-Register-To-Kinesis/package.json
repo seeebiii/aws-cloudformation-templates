@@ -1,0 +1,10 @@
+{
+  "name": "AWS-Lambda-Register-To-Kinesis",
+  "version": "1.0.0",
+  "author": "Sebastian Hesse",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "^2.196.0"
+  }
+}
