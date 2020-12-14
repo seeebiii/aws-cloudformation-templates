@@ -8,7 +8,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: data_provider.handler
-      Runtime: nodejs6.10
+      Runtime: nodejs12.x
       CodeUri: ./
       Policies:
         - AWSLambdaBasicExecutionRole
@@ -39,7 +39,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: logger.handler
-      Runtime: nodejs6.10
+      Runtime: nodejs12.x
       CodeUri: ./
       Timeout: 10
       Policies:
@@ -61,7 +61,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: logger.handler
-      Runtime: nodejs6.10
+      Runtime: nodejs12.x
       CodeUri: ./
       Timeout: 10
       Policies:
